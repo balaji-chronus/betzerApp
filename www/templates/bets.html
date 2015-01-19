@@ -1,0 +1,60 @@
+<ion-view title="BETS">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon-round"></button>
+  </ion-nav-buttons>
+
+  <ion-content class="has-header">
+    <div id="search-bar">
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper" id="search-input">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input type="text" placeholder="Search Bets" ng-model="query" ng-change="search()">
+        </label>
+      </div>
+    </div>
+    <ion-list>
+      <div ng-repeat="bet in bets">
+        <div class="list card">
+
+          <div class="item item-avatar text-center thick-border positive-bg rounded">
+            <img alt="Gravatar" class="circled gravatar_image" height="40" src="http://gravatar.com/avatar/{{bet.bet.image_url}}?size=40" width="40">
+            <h2 class="light"><strong>{{bet.bet.title.toUpperCase()}}</strong></h2>
+            <span class="calm smaller">{{bet.bet.created_at  | date:'medium'}}</span>
+          </div>
+
+          <div class="row row-center no-gutter">
+            <div class="no-bottom-border thick-border text-center col padding item rounded">
+              <i class="icon fill-icon ion-trophy balanced"></i>
+              <strong><span class="padding ng-binding item-text-wrap dark " style="vertical-align: text-bottom; ">{{bet.bet.stake}}</span></strong>
+            </div>
+            <div class="no-left-border no-bottom-border thick-border text-center col padding item rounded">
+              <i class="icon fill-icon ion-flag positive"></i>
+              <strong><span class="padding ng-binding dark" style="vertical-align: text-bottom; ">{{(getBettingStatus(bet.bet.closing_on) ? "Open" : "Closed")}}</span></strong>
+            </div>
+          </div>
+          <div class="row row-center no-gutter">
+            <div class="no-top-border thick-border text-center col padding item rounded">
+              <i class="icon fill-icon ion-chatbox-working energized"></i>
+              <strong><span class="padding ng-binding dark" style="vertical-align: text-bottom; ">{{10}}</span></strong>
+            </div>
+            <div class="no-left-border no-top-border thick-border text-center col padding item rounded">
+              <i class="icon fill-icon ion-thumbsup assertive"></i>
+              <strong><span class="padding ng-binding dark" style="vertical-align: text-bottom; ">{{bet.bet.votes}}</span></strong>
+            </div>
+          </div>
+
+          <div class="list no-gutter options-radio">
+            <label class="item item-radio stable-bg thick-border" ng-repeat="bet_option in bet.bet.bet_options">
+              <input type="radio" name="group_{{bet.bet.id}}" ng-checked="{{bet_option.bet_option.selected_option}}">
+              <div class="padding item-content stable-bg thick-border">
+                <strong class="dark"><small>{{bet_option.bet_option.option_text.toUpperCase()}}</small></strong>
+                <span class="badge badge-dark" style="top: 19px; right: 60px;"><i class="icon ion-person-stalker"></i> &nbsp; &nbsp;{{bet_option.bet_option.user_count}}</span>
+              </div>
+              <i class="radio-icon ion-checkmark-circled balanced"></i>
+            </label>
+          </div>
+        </div>
+      </div>
+    </ion-list>
+  </ion-content>
+</ion-view>

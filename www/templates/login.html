@@ -1,0 +1,24 @@
+<div class="modal">
+  <ion-header-bar class="positive-bg">
+    <h1 class="title stable"><strong>BETZER</strong></h1>
+    <div class="buttons">
+      <button class="button button-clear assertive" ng-click="closeLogin()"><i class="icon fill-icon stable ion-close-circled"></i></button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form ng-submit="doLogin()">
+      <div class="list">
+        <label class="item item-input">
+          <input type="text" placeholder="Username" ng-model="loginData.username">
+        </label>
+        <label class="item item-input">
+          <input type="password" placeholder="Password" ng-model="loginData.password">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Sign in</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</div>
+
